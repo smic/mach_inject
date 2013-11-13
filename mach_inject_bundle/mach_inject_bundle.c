@@ -22,7 +22,7 @@ mach_inject_bundle_pid(
 	CFBundleRef frameworkBundle = NULL;
 	if( !err ) {
 		frameworkBundle = CFBundleGetBundleWithIdentifier(
-			CFSTR("com.rentzsch.mach_inject_bundle"));
+			CFSTR("com.rentzsch.mach-inject-bundle"));
 		if( frameworkBundle == NULL )
 			err = err_mach_inject_bundle_couldnt_load_framework_bundle;
 	}
