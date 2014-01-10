@@ -3,3 +3,10 @@
 //
 
 #include <Carbon/Carbon.h>
+
+#if (DEBUG)
+	#define DEBUG_LOG( s, ... ) SMQuietLog( @"<%@:%d> %@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
+		fprintf(stderr, "mach_inject_bundle: entered in pthread_entry, param: %p\n", param);
+#else
+	#define DEBUG_LOG( s, ... )
+#endif
