@@ -97,9 +97,12 @@ mach_inject(
 	
 	//	Allocate the code.
 	vm_address_t remoteCode = (vm_address_t)NULL;
-	if( !err )
+	if( !err ) {
 		err = vm_allocate( remoteTask, &remoteCode, imageSize, 1 );
-		err = vm_protect(remoteTask, remoteCode, imageSize, 0, VM_PROT_EXECUTE | VM_PROT_WRITE | VM_PROT_READ);
+		if( !err ) {
+			err = vm_protect(remoteTask, remoteCode, imageSize, 0, VM_PROT_EXECUTE | VM_PROT_WRITE | VM_PROT_READ);
+		}
+	}
 	if( !err ) {
 		ASSERT_CAST( pointer_t, image );
 #if defined (__ppc__) || defined (__ppc64__) || defined(__x86_64__)
@@ -249,24 +252,25 @@ mach_inject(
 		// push stackContents
 		err = vm_write( remoteTask, remoteStack,
 						(pointer_t) stackContents, STACK_CONTENTS_SIZE);
-
-		remoteThreadState.__rdi = (unsigned long long) (imageOffset);
-		remoteThreadState.__rsi = (unsigned long long) (remoteParamBlock);
-		remoteThreadState.__rdx = (unsigned long long) (paramSize);
-		remoteThreadState.__rcx = (unsigned long long) (dummy_thread_struct);
-		
-		// set remote Program Counter
-		remoteThreadState.__rip = (unsigned long long) (remoteCode);
-		remoteThreadState.__rip += threadEntryOffset;  
-		
-		// set remote Stack Pointer
-		ASSERT_CAST( unsigned long long, remoteStack );
-		remoteThreadState.__rsp = (unsigned long long) remoteStack;
-				
-		// create thread and launch it
-		err = thread_create_running( remoteTask, x86_THREAD_STATE64,
-									 (thread_state_t) &remoteThreadState, x86_THREAD_STATE64_COUNT,
-									 &remoteThread );
+		if( !err ) {
+			remoteThreadState.__rdi = (unsigned long long) (imageOffset);
+			remoteThreadState.__rsi = (unsigned long long) (remoteParamBlock);
+			remoteThreadState.__rdx = (unsigned long long) (paramSize);
+			remoteThreadState.__rcx = (unsigned long long) (dummy_thread_struct);
+			
+			// set remote Program Counter
+			remoteThreadState.__rip = (unsigned long long) (remoteCode);
+			remoteThreadState.__rip += threadEntryOffset;
+			
+			// set remote Stack Pointer
+			ASSERT_CAST( unsigned long long, remoteStack );
+			remoteThreadState.__rsp = (unsigned long long) remoteStack;
+			
+			// create thread and launch it
+			err = thread_create_running( remoteTask, x86_THREAD_STATE64,
+										(thread_state_t) &remoteThreadState, x86_THREAD_STATE64_COUNT,
+										&remoteThread );
+		}
 	}
 #else
 #error architecture not supported
