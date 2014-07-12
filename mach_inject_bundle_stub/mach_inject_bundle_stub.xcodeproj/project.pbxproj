@@ -317,21 +317,21 @@
 		33B2AC4F092854FB004B1632 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Stephan Michels (FM8D87FYPH)";
+				CODE_SIGN_IDENTITY = "";
 			};
 			name = Development;
 		};
 		33B2AC50092854FB004B1632 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Stephan Michels (FM8D87FYPH)";
+				CODE_SIGN_IDENTITY = "";
 			};
 			name = Deployment;
 		};
 		33B2AC51092854FB004B1632 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Stephan Michels (FM8D87FYPH)";
+				CODE_SIGN_IDENTITY = "";
 			};
 			name = Default;
 		};
