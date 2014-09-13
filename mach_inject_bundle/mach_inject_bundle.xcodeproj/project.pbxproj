@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		23A92516141586E900EE4B17 /* mach_inject_bundle_stub.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 33B2AC8809285572004B1632 /* mach_inject_bundle_stub.bundle */; };
-		79ACC85907FD3EBD00D4147B /* mach_inject_bundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 79ACC85707FD3EBD00D4147B /* mach_inject_bundle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79ACC85907FD3EBD00D4147B /* mach_inject_bundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 79ACC85707FD3EBD00D4147B /* mach_inject_bundle.h */; };
 		79ACC85A07FD3EBD00D4147B /* mach_inject_bundle.c in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC85807FD3EBD00D4147B /* mach_inject_bundle.c */; };
 		79ACC88707FD40D700D4147B /* mach_inject.c in Sources */ = {isa = PBXBuildFile; fileRef = 79ACC88507FD40D700D4147B /* mach_inject.c */; };
 		79ACC88807FD40D700D4147B /* mach_inject.h in Headers */ = {isa = PBXBuildFile; fileRef = 79ACC88607FD40D700D4147B /* mach_inject.h */; };
@@ -108,6 +108,7 @@
 			children = (
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+				32DBCF5E0370ADEE00C91783 /* mach_inject_bundle_Prefix.pch */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -132,12 +133,11 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				79ACC85707FD3EBD00D4147B /* mach_inject_bundle.h */,
+				79ACC8DB07FD452E00D4147B /* mach_inject_bundle_stub.h */,
 				79ACC85807FD3EBD00D4147B /* mach_inject_bundle.c */,
+				79ACC85707FD3EBD00D4147B /* mach_inject_bundle.h */,
 				79ACC88507FD40D700D4147B /* mach_inject.c */,
 				79ACC88607FD40D700D4147B /* mach_inject.h */,
-				79ACC8DB07FD452E00D4147B /* mach_inject_bundle_stub.h */,
-				32DBCF5E0370ADEE00C91783 /* mach_inject_bundle_Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -157,9 +157,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79ACC85907FD3EBD00D4147B /* mach_inject_bundle.h in Headers */,
 				79ACC88807FD40D700D4147B /* mach_inject.h in Headers */,
 				79ACC8DC07FD452E00D4147B /* mach_inject_bundle_stub.h in Headers */,
+				79ACC85907FD3EBD00D4147B /* mach_inject_bundle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
