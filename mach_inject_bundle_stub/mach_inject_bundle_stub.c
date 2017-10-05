@@ -63,8 +63,10 @@ INJECT_ENTRY(
 	// On intel, per-pthread data is a zone of data that must be allocated.
 	// if not, all function trying to access per-pthread data (all mig functions for instance)
 	// will crash. 
-	extern void __pthread_set_self(char*);
-	__pthread_set_self(dummy_pthread_struct);
+//    extern void __pthread_set_self(char*);
+//    __pthread_set_self(dummy_pthread_struct);
+    extern void _pthread_set_self(char*);
+    _pthread_set_self(dummy_pthread_struct);
 #endif
 
 	DEBUG_LOG("mach_inject_bundle: entered in %s, codeOffset: %td, param: %p, paramSize: %lu\n",
