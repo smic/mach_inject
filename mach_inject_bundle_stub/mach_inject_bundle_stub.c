@@ -1,5 +1,5 @@
-// mach_inject_bundle_stub.c semver:1.2.0
-//   Copyright (c) 2003-2012 Jonathan 'Wolf' Rentzsch: http://rentzsch.com
+// mach_inject_bundle_stub.c semver:1.3.0
+//   Copyright (c) 2003-2016 Jonathan 'Wolf' Rentzsch: http://rentzsch.com
 //   Some rights reserved: http://opensource.org/licenses/mit
 //   https://github.com/rentzsch/mach_inject
 //
@@ -63,10 +63,14 @@ INJECT_ENTRY(
 	// On intel, per-pthread data is a zone of data that must be allocated.
 	// if not, all function trying to access per-pthread data (all mig functions for instance)
 	// will crash. 
-//    extern void __pthread_set_self(char*);
-//    __pthread_set_self(dummy_pthread_struct);
-    extern void _pthread_set_self(char*);
-    _pthread_set_self(dummy_pthread_struct);
+//    #if __MAC_OS_X_VERSION_MIN_REQUIRED >= 101200
+        // on macOS Serria, should use _pthread_set_self from libSystem.B.dylb
+        extern void _pthread_set_self(char*);
+        _pthread_set_self(dummy_pthread_struct);
+//    #else
+//        extern void __pthread_set_self(char*);
+//        __pthread_set_self(dummy_pthread_struct);
+//    #endif
 #endif
 
 	DEBUG_LOG("mach_inject_bundle: entered in %s, codeOffset: %td, param: %p, paramSize: %lu\n",
